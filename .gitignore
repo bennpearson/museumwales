@@ -2,4 +2,3 @@ tmp
 build/*
 *.log
 .settings
-build/iphone/build/build.log
