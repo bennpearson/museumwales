@@ -2,3 +2,9 @@ tmp
 build/#
 #.log
 .settings
+tiapp.xml
+README
+manifest
+LICENSE.txt
+LICENSE
+CHANGELOG.txt
