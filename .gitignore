@@ -1,10 +1,4 @@
 tmp
-build/#
-#.log
+build/*
+*.log
 .settings
-tiapp.xml
-README
-manifest
-LICENSE.txt
-LICENSE
-CHANGELOG.txt
