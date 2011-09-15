@@ -52,7 +52,6 @@ var label2 = Titanium.UI.createLabel({
 win2.add(label2);
 
 
-
 //
 //  add tabs
 //
