@@ -14,4 +14,9 @@ var testLabel = Titanium.UI.createLabel({
     height:'auto'
 });
 
+var webView = Ti.UI.createWebView({
+	url:'soundboard.html',
+})
+
+win.add(webView);
 win.add(testLabel);
