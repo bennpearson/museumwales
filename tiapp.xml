@@ -35,5 +35,6 @@
         </orientations>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <property name="ti.android.fastdev" type="bool">false</property>
     <modules/>
 </ti:app>
