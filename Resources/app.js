@@ -9,13 +9,13 @@ var tabGroup = Titanium.UI.createTabGroup();
 // create base UI tab and root window
 //
 var win1 = Titanium.UI.createWindow({   
-	url:'/main_windows/benn/benn.js',
-    title:'Benn',
+	url:'/main_windows/map/map.js',
+    title:'Map',
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
     icon:'KS_nav_views.png',
-    title:'Benn',
+    title:'Map',
     window:win1
 });
 
@@ -32,13 +32,13 @@ win1.add(label1);
 // create controls tab and root window
 //
 var win2 = Titanium.UI.createWindow({  
-	url:'/main_windows/ed/ed.js',
-    title:'Ed',
+	url:'/main_windows/barcode/barcode.js',
+    title:'Barcode',
     backgroundColor:'#fff'
 });
 var tab2 = Titanium.UI.createTab({  
     icon:'KS_nav_ui.png',
-    title:'Ed',
+    title:'Barcode',
     window:win2
 });
 
@@ -55,13 +55,13 @@ win2.add(label2);
 // create controls tab and root window
 //
 var win3 = Titanium.UI.createWindow({  
-	url:'/main_windows/rob/rob.js',
-    title:'Rob',
+	url:'/main_windows/buildings/buildings.js',
+    title:'Buildings',
     backgroundColor:'#fff'
 });
 var tab3 = Titanium.UI.createTab({  
     icon:'KS_nav_ui.png',
-    title:'Rob',
+    title:'Buildings',
     window:win3
 });
 
@@ -75,11 +75,36 @@ var label3 = Titanium.UI.createLabel({
 win3.add(label3);
 
 //
+// create controls tab and root window
+//
+var win4 = Titanium.UI.createWindow({  
+	url:'/main_windows/info/info.js',
+    title:'Info',
+    backgroundColor:'#fff'
+});
+var tab4 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Info',
+    window:win4
+});
+
+var label4 = Titanium.UI.createLabel({
+	color:'#999',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win4.add(label4);
+
+
+//
 //  add tabs
 //
 tabGroup.addTab(tab1);  
 tabGroup.addTab(tab2);  
 tabGroup.addTab(tab3);
+tabGroup.addTab(tab4);
 
 
 // open tab group
