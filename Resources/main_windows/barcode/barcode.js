@@ -4,7 +4,7 @@ var win = Titanium.UI.currentWindow;
 
 
 var testLabel = Titanium.UI.createLabel({
-    text:'Hello Benn',
+    text:'Hello Benn Edit',
     color:'#000',
     textAlign:'left',
     font:{fontSize:14},
