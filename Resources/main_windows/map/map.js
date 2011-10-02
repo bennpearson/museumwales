@@ -218,3 +218,78 @@ scrollView.add(bimg33);
 win.add(scrollView);
 win.add(helpbutton);
 
+
+
+
+var UUID = Titanium.Platform.createUUID();
+
+function isIPhone3_2_Plus()
+{
+	// add iphone specific tests
+	if (Titanium.Platform.name == 'iPhone OS')
+	{
+		var version = Titanium.Platform.version.split(".");
+		var major = parseInt(version[0],10);
+		var minor = parseInt(version[1],10);
+		
+		// can only test this support on a 3.2+ device
+		if (major > 3 || (major == 3 && minor > 1))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+if (isIPhone3_2_Plus())
+{
+	//NOTE: starting in 3.2+, you'll need to set the applications
+	//purpose property for using Location services on iPhone
+	Ti.Geolocation.purpose = "St Fagans GPS";
+}
+
+
+Ti.Geolocation.preferredProvider = "gps";
+
+
+if (Titanium.Geolocation.locationServicesEnabled === false)
+{
+	Titanium.UI.createAlertDialog({title:'Kitchen Sink', message:'Your device has geo turned off - turn it on.'}).show();
+}
+
+
+
+Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
+Titanium.Geolocation.distanceFilter = 0;
+
+var label = Ti.UI.createLabel({
+	text:'Forward Geo (Addr->Coords)',
+	font:{fontSize:12, fontWeight:'bold'},
+	color:'#111',
+	top:250,
+	left:10,
+	height:15,
+	width:300
+	});
+	
+win.add(label);
+
+function reportPosition(e) {
+    if (!e.success || e.error) {
+        label.text = 'error: ' + JSON.stringify(e.error);
+    }
+    else {
+        var accuracy = e.coords.accuracy;
+        var timestamp = e.coords.timestamp;
+        var longitude = e.coords.longitude;
+        var latitude = e.coords.latitude;
+        label.text = 'lat: ' + latitude + ', long: ' + longitude + ', geo time: ' + new Date(timestamp) + ', accuracy: ' + accuracy;
+        
+    }
+}
+
+// this fires once
+Titanium.Geolocation.getCurrentPosition(reportPosition);
+// this firces whenever hte distance filter is surpassed
+Titanium.Geolocation.addEventListener('location', reportPosition);
