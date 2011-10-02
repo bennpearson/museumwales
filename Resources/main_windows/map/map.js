@@ -3,6 +3,7 @@
 
 var win = Titanium.UI.currentWindow;
 
+var UUID = Titanium.Platform.createUUID();
 
 
 // the scrollview starts here
@@ -77,7 +78,6 @@ helpbutton.addEventListener('singletap', function(e)
 		height:30,
 		width:150
 	});
-	help.add(helpclose);
 	helpclose.addEventListener('click', function()
 	{
 		var tt3 = Titanium.UI.create2DMatrix();
@@ -85,11 +85,132 @@ helpbutton.addEventListener('singletap', function(e)
 		help.close({transform:tt3,duration:300});
 	});
 
-	help.open(aa);
+
+	help.add(helpclose);
+    help.open(aa);
 
 });   
 
-// the help window ends here
+// The help window ends here
+
+
+
+// THE GPS WINDOW STARTS HERE
+
+var gpsbutton = Titanium.UI.createImageView({
+	height: 40,
+	width: 40,
+	top: 50,
+	left: 5,
+	image: 'images/gps.png',
+	
+});
+
+gpsbutton.addEventListener('singletap', function(e)
+
+
+{
+	var ttt = Titanium.UI.create2DMatrix();
+	ttt = ttt.scale(0);
+
+
+    var gps = Titanium.UI.createWindow({
+		backgroundColor:'#336699',
+		height:358,
+		width:310,
+		top:49,
+		opacity:0.92,
+		transform:ttt
+	});
+
+	// create first transform to go beyond normal size
+	var ttt1 = Titanium.UI.create2DMatrix();
+	ttt1 = ttt1.scale(1.1);
+	var aaa = Titanium.UI.createAnimation();
+	aaa.transform = ttt1;
+	aaa.duration = 400;
+
+	// when this animation completes, scale to normal size
+	aaa.addEventListener('complete', function()
+	{
+		Titanium.API.info('here in complete');
+		var ttt2 = Titanium.UI.create2DMatrix();
+		ttt2 = ttt2.scale(1.0);
+		gps.animate({transform:ttt2, duration:200});
+
+	});
+
+	// create a button to close window
+	var gpsclose = Titanium.UI.createButton({
+		title:'Close',
+		height:30,
+		width:150
+	});
+	gpsclose.addEventListener('click', function()
+	{
+		var ttt3 = Titanium.UI.create2DMatrix();
+		ttt3 = ttt3.scale(0);
+		gps.close({transform:ttt3,duration:300});
+	});
+
+
+//TABLE OF CHECKINS MOTHERFUCKER
+
+var checkin = Titanium.UI.createTableView({
+	});
+
+var data=[];
+
+	for (var i = checkInArray.length - 1; i >= 0; i--){
+		
+		var row = Titanium.UI.createTableViewRow({
+			height: 100
+		});
+		
+		
+		var latitude = Titanium.UI.createLabel({
+			text:'latitude: ' + checkInArray[i].lat,
+			textAlign: 'left',
+			bottom:70,
+		});
+		
+		var longitude = Titanium.UI.createLabel({
+			text:'longitude: ' + checkInArray[i].longi,
+			textAlign: 'left',
+			bottom:30,
+		});
+		
+		var time = Titanium.UI.createLabel({
+		text:checkInArray[i].timer,
+		textAlign: 'left',
+		top:15,
+		});
+		
+		var id = Titanium.UI.createLabel({
+			text:'ID: ' + UUID,
+			textAlign: 'left',
+			top:65,
+		});
+		
+		
+		row.add(latitude);
+		row.add(longitude);
+		row.add(time);
+		row.add(id);
+		row.className = 'checkin';
+		
+		data.push(row);
+	};
+
+	checkin.setData(data);
+
+	gps.add(checkin)
+	gps.add(gpsclose);
+    gps.open(aaa);
+
+});   
+
+// GPS WINDOW ENDS HERE
 
 
 
@@ -217,6 +338,7 @@ scrollView.add(bimg33);
 
 win.add(scrollView);
 win.add(helpbutton);
+win.add(gpsbutton);
 
 
 
@@ -263,9 +385,9 @@ if (Titanium.Geolocation.locationServicesEnabled === false)
 Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
 Titanium.Geolocation.distanceFilter = 0;
 
-var label = Ti.UI.createLabel({
+/* var label = Ti.UI.createLabel({
 	text:'Forward Geo (Addr->Coords)',
-	font:{fontSize:12, fontWeight:'bold'},
+	font:{fontSize:10, fontWeight:'bold'},
 	color:'#111',
 	top:250,
 	left:10,
@@ -274,6 +396,10 @@ var label = Ti.UI.createLabel({
 	});
 	
 win.add(label);
+
+*/
+
+var checkInArray = [];
 
 function reportPosition(e) {
     if (!e.success || e.error) {
@@ -284,10 +410,15 @@ function reportPosition(e) {
         var timestamp = e.coords.timestamp;
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
-        label.text = 'lat: ' + latitude + ', long: ' + longitude + ', geo time: ' + new Date(timestamp) + ', accuracy: ' + accuracy;
-        
+        //label.text = UUID + ': lat: ' + latitude + ', long: ' + longitude + ', time: ' + new Date(timestamp) + ', accuracy: ' + accuracy;
+        checkInArray.push({'lat':latitude,'longi':longitude, 'timer':new Date(timestamp)}); 
     }
 }
+
+
+
+
+
 
 // this fires once
 Titanium.Geolocation.getCurrentPosition(reportPosition);
