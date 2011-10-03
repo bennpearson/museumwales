@@ -33,6 +33,7 @@ Titanium.Media.showCamera({
 });
 
 
+
 var TiBar = require('tibar');
 var label = Titanium.UI.createLabel({
     text:'TiBar App',
