@@ -101,8 +101,9 @@ win4.add(label4);
 //
 //  add tabs
 //
-tabGroup.addTab(tab1);  
+  
 tabGroup.addTab(tab2);  
+tabGroup.addTab(tab1);
 tabGroup.addTab(tab3);
 tabGroup.addTab(tab4);
 
