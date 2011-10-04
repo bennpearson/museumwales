@@ -38,7 +38,6 @@ var win = Titanium.UI.currentWindow;
 
 var TiBar = require('tibar');
 var label = Titanium.UI.createLabel({
-    text:'TiBar App',
     textAlign:'center',
     width:'auto'
 });
@@ -79,5 +78,13 @@ button.addEventListener('click', function(){
     });        
 });
 
+var barcodeImages = Ti.UI.createImageView({
+	image:'../../barcodeImage.png',
+	width:320,
+	height:480,
+	top:0
+});
+
+win.add(barcodeImages);	
 win.add(label);
 win.add(button);
