@@ -14,7 +14,7 @@ var win1 = Titanium.UI.createWindow({
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
-    icon:'KS_nav_views.png',
+    icon:'icon_map.png',
     title:'Map',
     window:win1
 });
@@ -37,7 +37,7 @@ var win2 = Titanium.UI.createWindow({
     backgroundColor:'#fff'
 });
 var tab2 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
+    icon:'icon_barcode.png',
     title:'Barcode',
     window:win2
 });
@@ -60,7 +60,7 @@ var win3 = Titanium.UI.createWindow({
     backgroundColor:'#fff'
 });
 var tab3 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
+    icon:'icon_buildings.png',
     title:'Buildings',
     window:win3
 });
@@ -79,12 +79,11 @@ win3.add(label3);
 //
 var win4 = Titanium.UI.createWindow({  
 	url:'/main_windows/info/info.js',
-    title:'Info',
     backgroundColor:'#fff'
 });
 var tab4 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Info',
+    icon:'icon_settings.png',
+    title:'Settings',
     window:win4
 });
 
@@ -107,6 +106,10 @@ tabGroup.addTab(tab1);
 tabGroup.addTab(tab3);
 tabGroup.addTab(tab4);
 
-
 // open tab group
-tabGroup.open();
+tabGroup.open({
+	transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+});
+
+// splash screen
+Ti.include("welcome.js");
