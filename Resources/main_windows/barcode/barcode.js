@@ -63,10 +63,16 @@ button.addEventListener('click', function(){
         success:function(data){
             Ti.API.info('TiBar success callback!');
             if(data && data.barcode){
-                Ti.UI.createAlertDialog({
-                    title: "Scan result",
-                    message: "Barcode: " + data.barcode + " Symbology:" + data.symbology
-                }).show();
+            	if (data.barcode == 'Been Pearson') {
+	                Ti.UI.createAlertDialog({
+	                    title: "Scan result",
+	                    message: "Hello: " + data.barcode + " Symbology:" + data.symbology
+	                }).show();
+                } else{
+	                Ti.UI.createAlertDialog({
+	                    title: "Scan result",
+	                    message: "Barcode: " + data.barcode + " Symbology:" + data.symbology
+	                }).show();                };
             }
         },
         cancel:function(){
@@ -80,9 +86,9 @@ button.addEventListener('click', function(){
 
 var barcodeImages = Ti.UI.createImageView({
 	image:'../../barcodeImage.png',
-	width:320,
-	height:480,
-	top:0
+	width:280,
+	height:260,
+	top:10
 });
 
 win.add(barcodeImages);	
