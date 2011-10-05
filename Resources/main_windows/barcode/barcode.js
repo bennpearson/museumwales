@@ -63,10 +63,63 @@ button.addEventListener('click', function(){
         success:function(data){
             Ti.API.info('TiBar success callback!');
             if(data && data.barcode){
-            	if (data.barcode == 'Been Pearson') {
+            	if (data.barcode == 'Gwalia Stores') {
+	                	var tt = Titanium.UI.create2DMatrix();
+	tt = tt.scale(0);
+
+
+    var help = Titanium.UI.createWindow({
+		backgroundColor:'#336699',
+		height:358,
+		width:310,
+		top:49,
+		opacity:0.92,
+		transform:tt
+	});
+
+	// create first transform to go beyond normal size
+	var tt1 = Titanium.UI.create2DMatrix();
+	tt1 = tt1.scale(1.1);
+	var aa = Titanium.UI.createAnimation();
+	aa.transform = tt1;
+	aa.duration = 400;
+
+	// when this animation completes, scale to normal size
+	aa.addEventListener('complete', function()
+	{
+		Titanium.API.info('here in complete');
+		var tt2 = Titanium.UI.create2DMatrix();
+		tt2 = tt2.scale(1.0);
+		help.animate({transform:tt2, duration:200});
+
+	});
+
+	// create a button to close window
+	var helpclose = Titanium.UI.createButton({
+		title:'Close',
+		height:30,
+		width:150
+	});
+	helpclose.addEventListener('click', function()
+	{
+		var tt3 = Titanium.UI.create2DMatrix();
+		tt3 = tt3.scale(0);
+		help.close({transform:tt3,duration:300});
+	});
+
+
+	help.add(helpclose);
+    help.open(aa);
+
+                }  else if (data.barcode == 'Tollhouse') {
 	                Ti.UI.createAlertDialog({
 	                    title: "Scan result",
-	                    message: "Hello: " + data.barcode + " Symbology:" + data.symbology
+	                    message: "Yo: " + data.barcode + " Symbology:" + data.symbology
+	                }).show();
+                } else if (data.barcode == 'St Marys School') {
+	                Ti.UI.createAlertDialog({
+	                    title: "Scan result",
+	                    message: "Boo: " + data.barcode + " Symbology:" + data.symbology
 	                }).show();
                 } else{
 	                Ti.UI.createAlertDialog({
