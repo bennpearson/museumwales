@@ -48,6 +48,7 @@ helpbutton.addEventListener('singletap', function(e)
 
     var help = Titanium.UI.createWindow({
 		backgroundColor:'#336699',
+		backgroundImage:'images/back-iphone.jpg',
 		height:358,
 		width:310,
 		top:49,
@@ -264,12 +265,13 @@ bimg33.addEventListener('click', function()
 
 	var bwin33 = Titanium.UI.createWindow   ({
 		backgroundColor:'#336699',
-		borderWidth:8,
-		borderColor:'#999',
+		backgroundImage:'images/back-iphone.jpg',
+		//borderWidth:8,
+		//borderColor:'#999',
 		height:300,
-		width:300,
-		borderRadius:10,
-		top:55,
+		width:310,
+		//borderRadius:10,
+		top:49,
 		opacity:0.92,
 		transform:t
 	});
