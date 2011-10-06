@@ -3,6 +3,7 @@
 
 var win = Titanium.UI.currentWindow;
 
+var UUID = Titanium.Platform.createUUID();
 
 
 // the scrollview starts here
@@ -47,6 +48,7 @@ helpbutton.addEventListener('singletap', function(e)
 
     var help = Titanium.UI.createWindow({
 		backgroundColor:'#336699',
+		backgroundImage:'images/back-iphone.jpg',
 		height:358,
 		width:310,
 		top:49,
@@ -77,7 +79,6 @@ helpbutton.addEventListener('singletap', function(e)
 		height:30,
 		width:150
 	});
-	help.add(helpclose);
 	helpclose.addEventListener('click', function()
 	{
 		var tt3 = Titanium.UI.create2DMatrix();
@@ -85,11 +86,132 @@ helpbutton.addEventListener('singletap', function(e)
 		help.close({transform:tt3,duration:300});
 	});
 
-	help.open(aa);
+
+	help.add(helpclose);
+    help.open(aa);
 
 });   
 
-// the help window ends here
+// The help window ends here
+
+
+
+// THE GPS WINDOW STARTS HERE
+
+var gpsbutton = Titanium.UI.createImageView({
+	height: 40,
+	width: 40,
+	top: 50,
+	left: 5,
+	image: 'images/gps.png',
+	
+});
+
+gpsbutton.addEventListener('singletap', function(e)
+
+
+{
+	var ttt = Titanium.UI.create2DMatrix();
+	ttt = ttt.scale(0);
+
+
+    var gps = Titanium.UI.createWindow({
+		backgroundColor:'#336699',
+		height:358,
+		width:310,
+		top:49,
+		opacity:0.92,
+		transform:ttt
+	});
+
+	// create first transform to go beyond normal size
+	var ttt1 = Titanium.UI.create2DMatrix();
+	ttt1 = ttt1.scale(1.1);
+	var aaa = Titanium.UI.createAnimation();
+	aaa.transform = ttt1;
+	aaa.duration = 400;
+
+	// when this animation completes, scale to normal size
+	aaa.addEventListener('complete', function()
+	{
+		Titanium.API.info('here in complete');
+		var ttt2 = Titanium.UI.create2DMatrix();
+		ttt2 = ttt2.scale(1.0);
+		gps.animate({transform:ttt2, duration:200});
+
+	});
+
+	// create a button to close window
+	var gpsclose = Titanium.UI.createButton({
+		title:'Close',
+		height:30,
+		width:150
+	});
+	gpsclose.addEventListener('click', function()
+	{
+		var ttt3 = Titanium.UI.create2DMatrix();
+		ttt3 = ttt3.scale(0);
+		gps.close({transform:ttt3,duration:300});
+	});
+
+
+//TABLE OF CHECKINS MOTHERFUCKER
+
+var checkin = Titanium.UI.createTableView({
+	});
+
+var data=[];
+
+	for (var i = checkInArray.length - 1; i >= 0; i--){
+		
+		var row = Titanium.UI.createTableViewRow({
+			height: 100
+		});
+		
+		
+		var latitude = Titanium.UI.createLabel({
+			text:'latitude: ' + checkInArray[i].lat,
+			textAlign: 'left',
+			bottom:70,
+		});
+		
+		var longitude = Titanium.UI.createLabel({
+			text:'longitude: ' + checkInArray[i].longi,
+			textAlign: 'left',
+			bottom:30,
+		});
+		
+		var time = Titanium.UI.createLabel({
+		text:checkInArray[i].timer,
+		textAlign: 'left',
+		top:15,
+		});
+		
+		var id = Titanium.UI.createLabel({
+			text:'ID: ' + UUID,
+			textAlign: 'left',
+			top:65,
+		});
+		
+		
+		row.add(latitude);
+		row.add(longitude);
+		row.add(time);
+		row.add(id);
+		row.className = 'checkin';
+		
+		data.push(row);
+	};
+
+	checkin.setData(data);
+
+	gps.add(checkin)
+	gps.add(gpsclose);
+    gps.open(aaa);
+
+});   
+
+// GPS WINDOW ENDS HERE
 
 
 
@@ -143,12 +265,13 @@ bimg33.addEventListener('click', function()
 
 	var bwin33 = Titanium.UI.createWindow   ({
 		backgroundColor:'#336699',
-		borderWidth:8,
-		borderColor:'#999',
+		backgroundImage:'images/back-iphone.jpg',
+		//borderWidth:8,
+		//borderColor:'#999',
 		height:300,
-		width:300,
-		borderRadius:10,
-		top:55,
+		width:310,
+		//borderRadius:10,
+		top:49,
 		opacity:0.92,
 		transform:t
 	});
@@ -217,4 +340,89 @@ scrollView.add(bimg33);
 
 win.add(scrollView);
 win.add(helpbutton);
+win.add(gpsbutton);
 
+
+
+
+var UUID = Titanium.Platform.createUUID();
+
+function isIPhone3_2_Plus()
+{
+	// add iphone specific tests
+	if (Titanium.Platform.name == 'iPhone OS')
+	{
+		var version = Titanium.Platform.version.split(".");
+		var major = parseInt(version[0],10);
+		var minor = parseInt(version[1],10);
+		
+		// can only test this support on a 3.2+ device
+		if (major > 3 || (major == 3 && minor > 1))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+if (isIPhone3_2_Plus())
+{
+	//NOTE: starting in 3.2+, you'll need to set the applications
+	//purpose property for using Location services on iPhone
+	Ti.Geolocation.purpose = "St Fagans GPS";
+}
+
+
+Ti.Geolocation.preferredProvider = "gps";
+
+
+if (Titanium.Geolocation.locationServicesEnabled === false)
+{
+	Titanium.UI.createAlertDialog({title:'Kitchen Sink', message:'Your device has geo turned off - turn it on.'}).show();
+}
+
+
+
+Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
+Titanium.Geolocation.distanceFilter = 0;
+
+/* var label = Ti.UI.createLabel({
+	text:'Forward Geo (Addr->Coords)',
+	font:{fontSize:10, fontWeight:'bold'},
+	color:'#111',
+	top:250,
+	left:10,
+	height:15,
+	width:300
+	});
+	
+win.add(label);
+
+*/
+
+var checkInArray = [];
+
+function reportPosition(e) {
+    if (!e.success || e.error) {
+        label.text = 'error: ' + JSON.stringify(e.error);
+    }
+    else {
+        var accuracy = e.coords.accuracy;
+        var timestamp = e.coords.timestamp;
+        var longitude = e.coords.longitude;
+        var latitude = e.coords.latitude;
+        //label.text = UUID + ': lat: ' + latitude + ', long: ' + longitude + ', time: ' + new Date(timestamp) + ', accuracy: ' + accuracy;
+        checkInArray.push({'lat':latitude,'longi':longitude, 'timer':new Date(timestamp)}); 
+    }
+}
+
+
+
+
+
+
+// this fires once
+Titanium.Geolocation.getCurrentPosition(reportPosition);
+// this firces whenever hte distance filter is surpassed
+Titanium.Geolocation.addEventListener('location', reportPosition);
