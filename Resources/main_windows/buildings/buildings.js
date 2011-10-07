@@ -6,16 +6,22 @@ if (Ti.Platform.osname == 'android')
     Titanium.UI.setBackgroundColor('#000');
     
     // create Window 2
-     var win1 = Titanium.UI.createWindow({
-        backgroundImage: 'images/android/back.jpg',
-        height: 410,
-        width: 320,
-        top: 0,
-        backgroundColor:'#000'
-    });
-    
+     // var win1 = Titanium.UI.createWindow({
+        // backgroundImage: 'images/android/back.jpg',
+        // height: 410,
+        // width: 320,
+        // top: 0,
+        // backgroundColor:'#000'
+    // });
+    var win1 = Titanium.UI.currentWindow;
+	win1.backgroundImage= 'images/android/back.jpg';
+	win1.height= 410;
+	win1.width= 320;
+	win1.top= 0;
+	win1.backgroundColor= '#000';
+	
     var headerView = Ti.UI.createView({
-        top: 0,
+        top: 0,//JUST CHANGED FROM 0
         height:100
     });
     
@@ -27,13 +33,14 @@ if (Ti.Platform.osname == 'android')
        height: 100,
        width: 320,
        top: 0,
-       backgroundImage: 'images/android/Buildings.jpg'
+       backgroundImage: 'images/android/Buildings.jpg',
+       backgroundColor:'#000'
     });
     
     var TheTable = Titanium.UI.createTableView({
         headerView:headerView,
         backgroundImage: 'images/android/back.jpg',
-        backgroundColor:'#000'
+        backgroundColor:'#fff'
     });
     var CustomData = [
     { leftImage:'images/android/blankHouse.png', buildingName:"Hayshed", buildingDate:'1870', urlink:'Abernodwydd.js' },
@@ -75,12 +82,12 @@ if (Ti.Platform.osname == 'android')
 
 
     var data=[];
-
-    for (var i = CustomData.length - 1; i >= 0; i--){
+	for (var i = CustomData.length - 1; i >= 0; i--) {
         
         var row = Titanium.UI.createTableViewRow({
             backgroundSelectedImage: 'images/android/rollOver.jpg',
-            top:0,
+            rowBackgroundColor:'#fff',
+            top:100,
             width:380,
             height:100
         });
@@ -132,8 +139,27 @@ if (Ti.Platform.osname == 'android')
         row.add(pattern);
         row.add(btn);
         row.className = 'building_row';
-         
+        
+        // var title =  Titanium.UI.createLabel({
+        // text:CustomData[i].title
+   		// });
+   		row.urlink = CustomData[i].urlink;
+		//row.date = CustomData[i].date;
+   		
         data.push(row);
+        // create table view event listener
+		row.addEventListener('click', function(e)
+		{
+			if (e.rowData.urlink)
+			{
+				Titanium.API.info("You clicked the button");
+				var win2 = Titanium.UI.createWindow({
+					url:e.rowData.urlink,
+				});
+				Titanium.UI.currentTab.open(win2,{animated:true});
+			}
+		});
+		//endEvent      
     };
 } else if (Ti.Platform.osname == "iphone")
 {
@@ -261,41 +287,24 @@ if (Ti.Platform.osname == 'android')
             height: 39,
             right: 7
         });
+        row.add(leftImage);
+		row.add(buildingName);
+		row.add(buildingDate);
+		row.add(pattern);
+		row.add(btn);
+		row.className = 'building_row';
+		row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
+		
+		data.push(row);
     };
 }
 
-row.add(leftImage);
-row.add(buildingName);
-row.add(buildingDate);
-row.add(pattern);
-row.add(btn);
-row.className = 'building_row';
-        
-data.push(row);
-        
-// create table view event listener
-row.addEventListener('click', function(e)
-{
-'/main_windows/map/map.js'
-Titanium.API.info("You clicked the button");
-//backgroundSelectedImage: 'images/iphone/rollOver-iphone.jpg'
-	if (e.rowData.urlink)
-	{
-		var win = Titanium.UI.createWindow({
-            color:'#000',
-            //backgroundColor:'transparent',
-            rowBackgroundColor:'#000',
-            top: 0,
-            url:e.rowData.urlink,
-            title:e.CustomData.title
-        });
-        Titanium.UI.currentTab.open(win,{animated:true});
-    }
-});
 
+        
 TheTable.setData(data);
 headerView.add(label);
 win1.add(TheTable);
+//Titanium.UI.currentWindow.add(win1);
 
 // open window
-win1.open();
+//win1.open();
