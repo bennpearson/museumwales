@@ -48,7 +48,7 @@ helpbutton.addEventListener('singletap', function(e)
 
     var help = Titanium.UI.createWindow({
 		backgroundColor:'#336699',
-		backgroundImage:'images/back-iphone.jpg',
+		backgroundImage:'images/help.png',
 		height:358,
 		width:310,
 		top:49,
@@ -74,10 +74,12 @@ helpbutton.addEventListener('singletap', function(e)
 	});
 
 	// create a button to close window
-	var helpclose = Titanium.UI.createButton({
-		title:'Close',
+	var helpclose = Titanium.UI.createImageView({
 		height:30,
-		width:150
+		width:30,
+		top: 15,
+		right: 15,
+		image: 'images/red-x.png',
 	});
 	helpclose.addEventListener('click', function()
 	{
@@ -251,19 +253,19 @@ map = Titanium.UI.createImageView({
 
 
 
-// building33 (Y Garreg Fawr Farmhouse) starts here
+// building10 (Tollhouse) starts here
 
-bimg33 = Titanium.UI.createImageView({
-  width:80,
-  height:90,
-  left:200,
-  top: 110
+bimg10 = Titanium.UI.createImageView({
+  width:50,
+  height:50,
+  left:900,
+  top: 660,
 });
 
-bimg33.addEventListener('click', function()
+bimg10.addEventListener('click', function()
 {
 
-	var bwin33 = Titanium.UI.createWindow   ({
+	var bwin10 = Titanium.UI.createWindow   ({
 		backgroundColor:'#336699',
 		backgroundImage:'images/back-iphone.jpg',
 		//borderWidth:8,
@@ -279,29 +281,235 @@ bimg33.addEventListener('click', function()
 
 	a.addEventListener('complete', function()
 	{
-		bwin33.animate({transform:t2, duration:200});
+		bwin10.animate({transform:t2, duration:200});
 
 	});
 
 	// create a button to close window
-	var b33 = Titanium.UI.createButton({
-		title:'Close',
-		height:30,
-		width:150
+	var b10 = Titanium.UI.createImageView({
+		height:20,
+		width:20,
+		top: 10,
+		right: 10,
+		image: 'images/red-x.png',
 	});
 	
-	bwin33.add(b33);
+	//add picture of building
+	var pic10 = Titanium.UI.createImageView({
+  		top: 10,
+  		left:10,
+  		height: 100,
+  		width: 'auto', 
+  		image: 'images/Tollhouse.png',
+	});
 	
-	b33.addEventListener('click', function()
+	//add title
+	var title10 = Titanium.UI.createImageView({
+  		top: 20,
+  		left:138,
+  		height: 80,
+  		width: 160, 
+  	    image: 'images/tollhousetitle.png',
+	});
+	
+	//add info
+	var info10 = Titanium.UI.createImageView({
+  		top: 110,
+  		left:12,
+  		height: 180,
+  		width: 286, 
+  		image: 'images/tollhouseinfo.png',
+	});
+	
+	
+	bwin10.add(b10);
+	bwin10.add(pic10);
+	bwin10.add(title10);
+	bwin10.add(info10);
+	
+	b10.addEventListener('click', function()
 	{
-		bwin33.close({transform:t3,duration:300});
+		bwin10.close({transform:t3,duration:300});
 	});
 
-	bwin33.open(a);
+	bwin10.open(a);
 
 });
 
-// building33 (Y Garreg Fawr Farmhouse) ends here
+// building10 (Tollhouse) ends here
+
+
+// building16 (Gwalia Stores) starts here
+
+bimg16 = Titanium.UI.createImageView({
+  width:115,
+  height:90,
+  left:540,
+  top: 480,
+});
+
+bimg16.addEventListener('click', function()
+{
+
+	var bwin16 = Titanium.UI.createWindow   ({
+		backgroundColor:'#336699',
+		backgroundImage:'images/back-iphone.jpg',
+		//borderWidth:8,
+		//borderColor:'#999',
+		height:300,
+		width:310,
+		//borderRadius:10,
+		top:49,
+		opacity:0.92,
+		transform:t
+	});
+
+
+	a.addEventListener('complete', function()
+	{
+		bwin16.animate({transform:t2, duration:200});
+
+	});
+
+	// create a button to close window
+	var b16 = Titanium.UI.createImageView({
+		height:20,
+		width:20,
+		top: 10,
+		right: 10,
+		image: 'images/red-x.png',
+	});
+	
+	//add picture of building
+	var pic16 = Titanium.UI.createImageView({
+  		top: 10,
+  		left:10,
+  		height: 100,
+  		width: 'auto', 
+  		image: 'images/GwaliaStores.png',
+	});
+	
+	//add title
+	var title16 = Titanium.UI.createImageView({
+  		top: 20,
+  		left:138,
+  		height: 80,
+  		width: 160, 
+  	    image: 'images/GwaliaTitle.png',
+	});
+	
+	//add info
+	var info16 = Titanium.UI.createImageView({
+  		top: 110,
+  		left:12,
+  		height: 180,
+  		width: 286, 
+  		image: 'images/gwaliainfo.png',
+	});
+	
+	
+	bwin16.add(b16);
+	bwin16.add(pic16);
+	bwin16.add(title16);
+	bwin16.add(info16);
+	
+	b16.addEventListener('click', function()
+	{
+		bwin16.close({transform:t3,duration:300});
+	});
+
+	bwin16.open(a);
+
+});
+
+// building16 (Gwalia Stores) ends here
+
+
+
+// building37 (Maestir School) starts here
+
+bimg37 = Titanium.UI.createImageView({
+  width:80,
+  height:90,
+  left:800,
+  top: 480,
+});
+
+bimg37.addEventListener('click', function()
+{
+
+	var bwin37 = Titanium.UI.createWindow   ({
+		backgroundColor:'#336699',
+		backgroundImage:'images/back-iphone.jpg',
+		//borderWidth:8,
+		//borderColor:'#999',
+		height:300,
+		width:310,
+		//borderRadius:10,
+		top:49,
+		opacity:0.92,
+		transform:t
+	});
+
+
+	a.addEventListener('complete', function()
+	{
+		bwin37.animate({transform:t2, duration:200});
+
+	});
+
+	// create a button to close window
+	var b37 = Titanium.UI.createImageView({
+		height:20,
+		width:20,
+		top: 10,
+		right: 10,
+		image: 'images/red-x.png',
+	});
+	
+	//add picture of building
+	var pic37 = Titanium.UI.createImageView({
+  		top: 10,
+  		left:10,
+  		height: 100,
+  		width: 'auto', 
+  		image: 'images/MaestirSchool.png',
+	});
+	
+	//add title
+	var title37 = Titanium.UI.createImageView({
+  		top: 20,
+  		left:138,
+  		height: 80,
+  		width: 160, 
+  	    image: 'images/maestirtitle.png',
+	});
+	
+	//add info
+	var info37 = Titanium.UI.createImageView({
+  		top: 110,
+  		left:12,
+  		height: 180,
+  		width: 286, 
+  		image: 'images/maestirinfo.png',
+	});
+	
+	
+	bwin37.add(b37);
+	bwin37.add(pic37);
+	bwin37.add(title37);
+	bwin37.add(info37);
+	
+	b37.addEventListener('click', function()
+	{
+		bwin37.close({transform:t3,duration:300});
+	});
+
+	bwin37.open(a);
+
+});
+
+// building37 (Maestir School) ends here
 
 
 
@@ -336,7 +544,9 @@ a.duration = 200;
 
 
 scrollView.add(map);
-scrollView.add(bimg33);
+scrollView.add(bimg10);
+scrollView.add(bimg16);
+scrollView.add(bimg37);
 
 win.add(scrollView);
 win.add(helpbutton);
