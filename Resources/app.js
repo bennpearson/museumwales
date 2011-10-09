@@ -11,6 +11,7 @@ var tabGroup = Titanium.UI.createTabGroup();
 var win1 = Titanium.UI.createWindow({   
 	url:'/main_windows/map/map.js',
     title:'Map',
+    navBarHidden:true,
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
@@ -34,6 +35,9 @@ win1.add(label1);
 var win2 = Titanium.UI.createWindow({  
 	url:'/main_windows/barcode/barcode.js',
     title:'Barcode',
+    navBarHidden:true,
+   // barImage: 'images/wood.png',
+  	backgroundImage: 'main_windows/map/images/back-iphone.jpg',
     backgroundColor:'#fff'
 });
 var tab2 = Titanium.UI.createTab({  
@@ -57,6 +61,7 @@ win2.add(label2);
 var win3 = Titanium.UI.createWindow({  
 	url:'/main_windows/buildings/buildings.js',
     title:'Buildings',
+    navBarHidden:true,
     backgroundColor:'#fff'
 });
 var tab3 = Titanium.UI.createTab({  
@@ -96,15 +101,41 @@ var label4 = Titanium.UI.createLabel({
 
 win4.add(label4);
 
+//
+// create controls tab and root window
+//
+var win5 = Titanium.UI.createWindow({  
+	url:'/main_windows/virtualtour/virtualtour.js',
+    backgroundColor:'#fff',
+    navBarHidden:true,
+    backgroundImage:'vrtour.png'
+});
+var tab5 = Titanium.UI.createTab({  
+    icon:'icon_vrtour.png',
+    title:'Tour',
+    window:win5
+});
+
+var label5 = Titanium.UI.createLabel({
+	color:'#999',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win4.add(label4);
+
 
 //
 //  add tabs
 //
-  
+
+tabGroup.addTab(tab1);  
 tabGroup.addTab(tab2);  
-tabGroup.addTab(tab1);
 tabGroup.addTab(tab3);
+tabGroup.addTab(tab5);
 tabGroup.addTab(tab4);
+
 
 // open tab group
 tabGroup.open({

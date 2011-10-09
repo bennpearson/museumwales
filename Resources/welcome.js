@@ -7,6 +7,7 @@
 		backgroundColor:'#fff',
 		opacity:1,
 		top:0,
+  		backgroundImage: 'main_windows/map/images/back-iphone.jpg',
 		touchEnabled:true
 	});
 
@@ -24,17 +25,24 @@
 	
 	var iconImages = Ti.UI.createImageView({
 		image:'iconImages.png',
-		width:320,
-		height:300,
-		top:70
+		width:280,
+		height:380,
+		top:10
 	});
 	
 	// create a button to close window
 	var welcomeClose = Titanium.UI.createButton({
-		title:'Close',
-		height:30,
-		width:150,
-		top:360
+		style:Titanium.UI.iPhone.SystemButtonStyle.PLAIN, 
+	    title: "Start",
+	    borderRadius:12, 
+	    font:{fontFamily: 'Times New Roman', fontSize:18},
+	    color:'#fff',
+	    backgroundGradient:{type:'linear', colors:['#3a1b0a','#3a1b0a'], startPoint:{x:0,y:0}, endPoint:{x:3,y:80}, backFillStart:false}, 
+	    borderColor:'#b8b29c',
+	    borderWidth: 2,
+	    height:40,
+	    width:100,
+	    bottom:60		
 	});	
 	
 	var t = Titanium.UI.create2DMatrix();
@@ -47,7 +55,6 @@
 	});
 	
 	welcomeWindow.add(iconImages);	
-	welcomeWindow.add(message);
 	welcomeWindow.add(welcomeClose);
 	welcomeWindow.open();
 
