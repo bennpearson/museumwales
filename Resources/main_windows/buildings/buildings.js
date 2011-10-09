@@ -1,6 +1,4 @@
-
-// this sets the background color of the master UIView (when there are no windows/tab groups on it)
-
+//is it Android or iPhone??
 if (Ti.Platform.osname == 'android')
 {
     Titanium.UI.setBackgroundColor('#000');
@@ -13,6 +11,7 @@ if (Ti.Platform.osname == 'android')
         // top: 0,
         // backgroundColor:'#000'
     // });
+    
     var win1 = Titanium.UI.currentWindow;
 	win1.backgroundImage= 'images/android/back.jpg';
 	win1.height= 410;
@@ -20,16 +19,14 @@ if (Ti.Platform.osname == 'android')
 	win1.top= 0;
 	win1.backgroundColor= '#000';
 	
+	var number = Ti.UI.currentWindow.number;
+	
     var headerView = Ti.UI.createView({
-        top: 0,//JUST CHANGED FROM 0
+        top: 0,
         height:100
     });
     
     var label = Ti.UI.createLabel({ 
-       //text:'Buildings', 
-       //textAlign:'center',
-       //font: {fontFamily: 'Verdana', fontSize:25}, 
-       //color: '#000',
        height: 100,
        width: 320,
        top: 0,
@@ -42,6 +39,7 @@ if (Ti.Platform.osname == 'android')
         backgroundImage: 'images/android/back.jpg',
         backgroundColor:'#fff'
     });
+    
     var CustomData = [
     { leftImage:'images/android/blankHouse.png', buildingName:"Hayshed", buildingDate:'1870', urlink:'Abernodwydd.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Cilewent Farmhouse", buildingDate:'1470', urlink:'Abernodwydd.js' },
@@ -69,7 +67,7 @@ if (Ti.Platform.osname == 'android')
     { leftImage:'images/android/blankHouse.png', buildingName:"Post Office", buildingDate:'1936', urlink:'Old Farmhouse.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Tailor’s Shop", buildingDate:'1896', urlink:'metalworks.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Derwen Bakehouse", buildingDate:'1900', urlink:'metalworks.js' },
-    { leftImage:'images/android/Tollhouse.png', buildingName:"Tollhouse", buildingDate:'1772', urlink:'tollhouse.js' },
+    { leftImage:'images/android/Tollhouse.png', buildingName:"Tollhouse", buildingDate:'1772', urlink:'/main_windows/buildings/toll_house.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Cae Adda Byre", buildingDate:'late 18th - early 19th century', urlink:'metalworks.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Llainfadyn Cottage", buildingDate:'1762', urlink:'metalworks.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Nant Wallter cottage", buildingDate:'1770', urlink:'metalworks.js' },
@@ -77,9 +75,9 @@ if (Ti.Platform.osname == 'android')
     { leftImage:'images/android/blankHouse.png', buildingName:"Llwyn-yr-eos Farmstead", buildingDate:'1820 onwards', urlink:'Old Farm House.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Melin Bomprene", buildingDate:'1852-3', urlink:'Shop.js' },
     { leftImage:'images/android/blankHouse.png', buildingName:"Circular pigsty", buildingDate:'1800', urlink:'Toll House.js' },
-    { leftImage:'images/android/blankHouse.png', buildingName:"Kennixton Farmhouse", buildingDate:'1610', urlink:'Abernodwydd.js' }
+    { leftImage:'images/android/blankHouse.png', buildingName:"Kennixton Farmhouse", buildingDate:'1610', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/Tollhouse.png', buildingName:"Tollhouse", buildingDate:'1772', urlink:'/main_windows/buildings/toll_house.js' }
     ];
-
 
     var data=[];
 	for (var i = CustomData.length - 1; i >= 0; i--) {
@@ -140,23 +138,20 @@ if (Ti.Platform.osname == 'android')
         row.add(btn);
         row.className = 'building_row';
         
-        // var title =  Titanium.UI.createLabel({
-        // text:CustomData[i].title
-   		// });
    		row.urlink = CustomData[i].urlink;
-		//row.date = CustomData[i].date;
-   		
+  		
         data.push(row);
+        
         // create table view event listener
 		row.addEventListener('click', function(e)
 		{
 			if (e.rowData.urlink)
 			{
-				Titanium.API.info("You clicked the button");
-				var win2 = Titanium.UI.createWindow({
+				//Titanium.API.info("You clicked the button");
+				var win1 = Titanium.UI.createWindow({
 					url:e.rowData.urlink,
 				});
-				Titanium.UI.currentTab.open(win2,{animated:true});
+				Titanium.UI.currentTab.open(win1,{animated:true});
 			}
 		});
 		//endEvent      
@@ -164,7 +159,7 @@ if (Ti.Platform.osname == 'android')
 } else if (Ti.Platform.osname == "iphone")
 {
     Titanium.UI.setBackgroundColor('#000');
-    
+   
     // create Window 2
     var win1 = Titanium.UI.createWindow({
         backgroundImage: 'images/iphone/back-iphone.jpg',
@@ -180,10 +175,6 @@ if (Ti.Platform.osname == 'android')
     });
     
     var label = Ti.UI.createLabel({ 
-       //text:'Buildings', 
-       //textAlign:'center',
-       //font: {fontFamily: 'Verdana', fontSize:25}, 
-       //color: '#000',
        height: 100,
        width: 320,
        top: 0,
@@ -194,47 +185,47 @@ if (Ti.Platform.osname == 'android')
         headerView:headerView,
         top: 0,
         backgroundColor:'transparent',
-           //rowBackgroundColor:'#000',
         style:Titanium.UI.iPhone.TableViewStyle.PLAIN
     });
-        var CustomData = [
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Hayshed", buildingDate:'1870', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Cilewent Farmhouse", buildingDate:'1470', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Aluminium Prefab Bungalow", buildingDate:'1948', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Rhyd-y-car", buildingDate:'1800', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Communal oven", buildingDate:'1800', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Smithy", buildingDate:'18th century', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Saddler’s workshop", buildingDate:'1926', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/MaestirSchool.png', buildingName:"Maestir School", buildingDate:'1880-1916', urlink:'maestirschool.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Clogmaker’s workshop", buildingDate:'Opening 2011', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Hendre-wen Barn", buildingDate:'1600', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"The Battle of St Fagans", buildingDate:'8 May 1648', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Y Garreg Fawr Farmhouse", buildingDate:'1544', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"St Teilo’s church", buildingDate:'12th – 16th century', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Timber circle", buildingDate:'Reconstructed 1998', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Haverfordwest Trader’s House", buildingDate:'Under construction', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Gorse mill", buildingDate:'1842', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Celtic village", buildingDate:'Re-created 1992', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Tannery", buildingDate:'late 18th century', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Sawmill", buildingDate:'1892', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Pottery", buildingDate:'1900', urlink:'Abernodwydd.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Workmen’s Institute", buildingDate:'1916', urlink:'Toll House.js' },
-    { leftImage:'images/iphone/GwaliaStores.png', buildingName:"Gwalia Stores", buildingDate:'1880', urlink:'gwaliastores.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Cockpit", buildingDate:'17th century', urlink:'Old Farm House.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Post Office", buildingDate:'1936', urlink:'Old Farmhouse.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Tailor’s Shop", buildingDate:'1896', urlink:'metalworks.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Derwen Bakehouse", buildingDate:'1900', urlink:'metalworks.js' },
-    { leftImage:'images/iphone/Tollhouse.png', buildingName:"Tollhouse", buildingDate:'1772', urlink:'tollhouse.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Cae Adda Byre", buildingDate:'late 18th - early 19th century', urlink:'metalworks.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Llainfadyn Cottage", buildingDate:'1762', urlink:'metalworks.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Nant Wallter cottage", buildingDate:'1770', urlink:'metalworks.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Hendre’r-ywydd Uchaf Farmhouse", buildingDate:'1508', urlink:'metalworks.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Llwyn-yr-eos Farmstead", buildingDate:'1820 onwards', urlink:'Old Farm House.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Melin Bomprene", buildingDate:'1852-3', urlink:'Shop.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Circular pigsty", buildingDate:'1800', urlink:'Toll House.js' },
-    { leftImage:'images/iphone/blankHouse.png', buildingName:"Kennixton Farmhouse", buildingDate:'1610', urlink:'Abernodwydd.js' }
+    
+    var CustomData = [
+    { leftImage:'images/android/blankHouse.png', buildingName:"Hayshed", buildingDate:'1870', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Cilewent Farmhouse", buildingDate:'1470', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Aluminium Prefab Bungalow", buildingDate:'1948', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Rhyd-y-car", buildingDate:'1800', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Communal oven", buildingDate:'1800', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Smithy", buildingDate:'18th century', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Saddler’s workshop", buildingDate:'1926', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/MaestirSchool.png', buildingName:"Maestir School", buildingDate:'1880-1916', urlink:'maestirschool.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Clogmaker’s workshop", buildingDate:'Opening 2011', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Hendre-wen Barn", buildingDate:'1600', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"The Battle of St Fagans", buildingDate:'8 May 1648', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Y Garreg Fawr Farmhouse", buildingDate:'1544', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"St Teilo’s church", buildingDate:'12th – 16th century', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Timber circle", buildingDate:'Reconstructed 1998', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Haverfordwest Trader’s House", buildingDate:'Under construction', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Gorse mill", buildingDate:'1842', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Celtic village", buildingDate:'Re-created 1992', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Tannery", buildingDate:'late 18th century', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Sawmill", buildingDate:'1892', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Pottery", buildingDate:'1900', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Workmen’s Institute", buildingDate:'1916', urlink:'Toll House.js' },
+    { leftImage:'images/android/GwaliaStores.png', buildingName:"Gwalia Stores", buildingDate:'1880', urlink:'gwaliastores.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Cockpit", buildingDate:'17th century', urlink:'Old Farm House.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Post Office", buildingDate:'1936', urlink:'Old Farmhouse.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Tailor’s Shop", buildingDate:'1896', urlink:'metalworks.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Derwen Bakehouse", buildingDate:'1900', urlink:'metalworks.js' },
+    { leftImage:'images/android/Tollhouse.png', buildingName:"Tollhouse", buildingDate:'1772', urlink:'/main_windows/buildings/toll_house.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Cae Adda Byre", buildingDate:'late 18th - early 19th century', urlink:'metalworks.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Llainfadyn Cottage", buildingDate:'1762', urlink:'metalworks.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Nant Wallter cottage", buildingDate:'1770', urlink:'metalworks.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Hendre’r-ywydd Uchaf Farmhouse", buildingDate:'1508', urlink:'metalworks.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Llwyn-yr-eos Farmstead", buildingDate:'1820 onwards', urlink:'Old Farm House.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Melin Bomprene", buildingDate:'1852-3', urlink:'Shop.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Circular pigsty", buildingDate:'1800', urlink:'Toll House.js' },
+    { leftImage:'images/android/blankHouse.png', buildingName:"Kennixton Farmhouse", buildingDate:'1610', urlink:'Abernodwydd.js' },
+    { leftImage:'images/android/Tollhouse.png', buildingName:"Tollhouse", buildingDate:'1772', urlink:'/main_windows/buildings/toll_house.js' }
     ];
-
 
     var data=[];
 
@@ -245,8 +236,7 @@ if (Ti.Platform.osname == 'android')
             top:0,
             width:380,
             height:100
-        });
-        
+        });      
         var leftImage =  Titanium.UI.createView({
             backgroundImage:CustomData[i].leftImage,
             width: 120,
@@ -295,7 +285,23 @@ if (Ti.Platform.osname == 'android')
 		row.className = 'building_row';
 		row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
 		
-		data.push(row);
+		row.urlink = CustomData[i].urlink;
+  		
+        data.push(row);
+        
+        // create table view event listener
+		row.addEventListener('click', function(e)
+		{
+			if (e.rowData.urlink)
+			{
+				Titanium.API.info("You clicked the button");
+				var win1 = Titanium.UI.createWindow({
+					url:e.rowData.urlink,
+				});
+				Titanium.UI.currentTab.open(win1,{animated:true});
+			}
+		});
+		//endEvent      
     };
 }
 
@@ -304,7 +310,3 @@ if (Ti.Platform.osname == 'android')
 TheTable.setData(data);
 headerView.add(label);
 win1.add(TheTable);
-//Titanium.UI.currentWindow.add(win1);
-
-// open window
-//win1.open();
