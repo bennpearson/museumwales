@@ -161,6 +161,7 @@ if (Ti.Platform.osname == 'android')
     Titanium.UI.setBackgroundColor('#000');
    
     // create Window 2
+<<<<<<< HEAD
     var win1 = Titanium.UI.createWindow({
         backgroundImage: 'images/iphone/back-iphone.jpg',
         height: 410,
@@ -168,6 +169,9 @@ if (Ti.Platform.osname == 'android')
         top: 0,
         backgroundColor:'#000'
     });
+=======
+    var win1 = Titanium.UI.currentWindow;
+>>>>>>> bennbranch
     
     var headerView = Ti.UI.createView({
         top: 0,
@@ -309,4 +313,8 @@ if (Ti.Platform.osname == 'android')
         
 TheTable.setData(data);
 headerView.add(label);
+<<<<<<< HEAD
 win1.add(TheTable);
+=======
+win1.add(TheTable);
+>>>>>>> bennbranch

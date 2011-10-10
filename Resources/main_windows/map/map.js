@@ -495,6 +495,7 @@ bimg37.addEventListener('click', function()
 	});
 	
 	
+<<<<<<< HEAD
 
 
 	var maestir = Titanium.UI.createWindow({   
@@ -511,6 +512,8 @@ bimg37.addEventListener('click', function()
 
 	
 	
+=======
+>>>>>>> bennbranch
 	bwin37.add(b37);
 	bwin37.add(pic37);
 	bwin37.add(title37);

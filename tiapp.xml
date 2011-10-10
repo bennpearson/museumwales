@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+>>>>>>> bennbranch
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <deployment-targets>
         <target device="mobileweb">false</target>
@@ -30,11 +34,20 @@
         <orientations device="ipad">
             <orientation>Ti.UI.PORTRAIT</orientation>
             <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+<<<<<<< HEAD
             <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+=======
+>>>>>>> bennbranch
         </orientations>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <property name="ti.android.fastdev" type="bool">false</property>
+<<<<<<< HEAD
     <modules/>
+=======
+	<modules>
+        <module version="0.4.2">tibar</module>
+    </modules>
+>>>>>>> bennbranch
 </ti:app>
