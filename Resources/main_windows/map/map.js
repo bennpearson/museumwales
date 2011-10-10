@@ -495,6 +495,22 @@ bimg37.addEventListener('click', function()
 	});
 	
 	
+
+
+	var maestir = Titanium.UI.createWindow({   
+	url:'/main_windows/barcode/barcode.js',
+	title : 'maestir',
+    backgroundColor : '#fff',
+	});
+	
+	info37.addEventListener('click', function()
+	{
+		maestir.open();
+	});
+
+
+	
+	
 	bwin37.add(b37);
 	bwin37.add(pic37);
 	bwin37.add(title37);
