@@ -277,7 +277,7 @@ if (Ti.Platform.osname == 'android')
 		row.add(pattern);
 		row.add(btn);
 		row.className = 'building_row';
-		row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
+		//row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
 		
 		row.urlink = CustomData[i].urlink;
   		

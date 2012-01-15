@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
+    <sdk-version>1.7.2</sdk-version>
     <deployment-targets>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
@@ -34,7 +35,7 @@
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <property name="ti.android.fastdev" type="bool">false</property>
-	<modules>
+    <modules>
         <module version="0.4.2">tibar</module>
     </modules>
 </ti:app>

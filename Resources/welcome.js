@@ -32,7 +32,7 @@
 	
 	// create a button to close window
 	var welcomeClose = Titanium.UI.createButton({
-		style:Titanium.UI.iPhone.SystemButtonStyle.PLAIN, 
+	//	style:Titanium.UI.iPhone.SystemButtonStyle.PLAIN, 
 	    title: "Start",
 	    borderRadius:12, 
 	    font:{fontFamily: 'Times New Roman', fontSize:18},

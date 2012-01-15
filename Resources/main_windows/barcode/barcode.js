@@ -43,7 +43,7 @@ var label = Titanium.UI.createLabel({
 });
 
 var button = Ti.UI.createButton({
-	style:Titanium.UI.iPhone.SystemButtonStyle.PLAIN, 
+	//style:Ti.UI.iPhone.SystemButtonStyle.PLAIN, 
     title: "Scan barcode",
     borderRadius:12, 
     font:{fontFamily: 'Times New Roman', fontSize:18},

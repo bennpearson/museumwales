@@ -138,9 +138,7 @@ tabGroup.addTab(tab4);
 
 
 // open tab group
-tabGroup.open({
-	transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-});
+tabGroup.open({});
 
 // splash screen
 Ti.include("welcome.js");
